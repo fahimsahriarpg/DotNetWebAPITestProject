@@ -11,9 +11,9 @@ namespace WebApplication8.Controllers
     public class ComplaintsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly IComplain _complaintRepository;
+        private readonly Interfaces.IComplaintRepository _complaintRepository;
 
-        public ComplaintsController(ApplicationDbContext context, IComplain complaintRepository)
+        public ComplaintsController(ApplicationDbContext context, Interfaces.IComplaintRepository complaintRepository)
         {
             _context = context;
             _complaintRepository = complaintRepository;

@@ -4,7 +4,7 @@ using WebApplication8.Model.DTO;
 
 namespace WebApplication8.Interfaces
 {
-    public interface IComplain
+    public interface IComplaintRepository
     {
         Task<Complaint> AddComplaintAsync(Complaint complaint); 
         Task AddComplaintImageAsync(ComplaintImage complaintImage);
