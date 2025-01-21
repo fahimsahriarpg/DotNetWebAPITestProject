@@ -1,0 +1,114 @@
+# Visual Studio
+.vscode/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Configuration
+appsettings.json
+appsettings.*.json
+
+# User-specific files
+*.rsuser
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+ProjectName/packages/*
+
+# Entity Framework
+*.ndf
+*.ldf
+*.mdf
+
+# Bower
+bower_components/
+.bowerrc
+
+# LibMan
+libman.json
+wwwroot/lib/
+
+# Npm
+node_modules/
+npm-debug.log
+
+# Yarn
+yarn.lock
+.yarn/
+.pnp.*
+.yarn-debug.log*
+.yarn-error.log*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+$RECYCLE.BIN/
+
+# Web
+.env
+.env.*
+
+# Rider
+.idea/
+
+# JetBrains Rider
+.idea/
+.idea_modules/
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Office Temp Files
+~$*
+~.*
+
+# Windows shortcuts
+*.lnk
+
+# Auto-generated AssemblyInfo file
+AssemblyInfo.cs
+
+# DotNet specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+project.json
+
+# Linux files
+*.pid
+*.pid.lock
+
+# OSX files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Coverage reports
+*.lcov
+
+# Test Results
+TestResults
+
+# Remove Git files
+!.gitkeep
+bin/
+obj/
