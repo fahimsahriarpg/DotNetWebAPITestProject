@@ -1,114 +1,43 @@
-# Visual Studio
-.vscode/
-.vs/
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
-
-# ASP.NET
+*.swp
+*.*~
 project.lock.json
-project.fragment.lock.json
-artifacts/
+.DS_Store
+*.pyc
+nupkg/
 
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
-
-# Configuration
-appsettings.json
-appsettings.*.json
-
-# User-specific files
-*.rsuser
-
-# Logs
-*.log
-
-# NuGet
-*.nupkg
-*.snupkg
-.nuget/
-packages/
-ProjectName/packages/*
-
-# Entity Framework
-*.ndf
-*.ldf
-*.mdf
-
-# Bower
-bower_components/
-.bowerrc
-
-# LibMan
-libman.json
-wwwroot/lib/
-
-# Npm
-node_modules/
-npm-debug.log
-
-# Yarn
-yarn.lock
-.yarn/
-.pnp.*
-.yarn-debug.log*
-.yarn-error.log*
-
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-$RECYCLE.BIN/
-
-# Web
-.env
-.env.*
+# Visual Studio Code
+.vscode/
 
 # Rider
 .idea/
 
-# JetBrains Rider
-.idea/
-.idea_modules/
+# Visual Studio
+.vs/
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Fleet
+.fleet/
 
-# Office Temp Files
-~$*
-~.*
+# Code Rush
+.cr/
 
-# Windows shortcuts
-*.lnk
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# Auto-generated AssemblyInfo file
-AssemblyInfo.cs
-
-# DotNet specific
-project.lock.json
-project.fragment.lock.json
-artifacts/
-project.json
-
-# Linux files
-*.pid
-*.pid.lock
-
-# OSX files
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Coverage reports
-*.lcov
-
-# Test Results
-TestResults
-
-# Remove Git files
-!.gitkeep
-bin/
-obj/
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn

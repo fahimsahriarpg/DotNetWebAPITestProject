@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using static System.Net.Mime.MediaTypeNames;
 using WebApplication8.Context;
 using WebApplication8.Model;
 using WebApplication8.Model.DTO;
-using Microsoft.EntityFrameworkCore;
+using WebApplication8.Interfaces;
 
 namespace WebApplication8.Controllers
 {
@@ -12,34 +11,19 @@ namespace WebApplication8.Controllers
     public class ComplaintsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IComplain _complaintRepository;
 
-        public ComplaintsController(ApplicationDbContext context)
+        public ComplaintsController(ApplicationDbContext context, IComplain complaintRepository)
         {
             _context = context;
+            _complaintRepository = complaintRepository;
         }
 
         [HttpGet]
-        [Route("getAllComplaintsWithImages")]
+        [Route("complaints")]
         public async Task<ActionResult<List<ComplaintWithImagesDto>>> GetAllComplaintsWithImages()
         {
-            var complaints = await _context.Complaints.Include(c => c.Images).ToListAsync();
-
-            var complaintDtos = complaints.Select(complaint => new ComplaintWithImagesDto
-            {
-                Id = complaint.Id,
-                Name = complaint.Name,
-                Detail = complaint.Detail,
-                Images = complaint.Images.Select(image => new ComplaintImageDto
-                {
-                    Id = image.Id,
-                    FileName = image.FileName,
-                    ActualFileName = image.ActualFileName,
-                    FileSize = image.FileSize,
-                    FilePath = image.FilePath,
-                    FileType = image.FileType
-                }).ToList()
-            }).ToList();
-
+            var complaintDtos = await _complaintRepository.GetAllComplaintsWithImagesAsync(); 
             return Ok(complaintDtos);
         }
 
@@ -59,10 +43,8 @@ namespace WebApplication8.Controllers
                 Detail = complaintDto.Detail,
                 Images = new List<ComplaintImage>()
             };
-
             // Save the complaint entity to the database
-            _context.Complaints.Add(complaint);
-            await _context.SaveChangesAsync();
+            await _complaintRepository.AddComplaintAsync(complaint);
 
             if (complaintDto.File != null && complaintDto.File.Count > 0)
             {
@@ -111,13 +93,9 @@ namespace WebApplication8.Controllers
                             ComplaintId = complaint.Id
                         };
 
-                        // Save the complaint image entity to the database
-                        _context.ComplaintImages.Add(complaintImage);
-                        complaint.Images.Add(complaintImage);
+                        await _complaintRepository.AddComplaintImageAsync(complaintImage);
                     }
                 }
-
-                await _context.SaveChangesAsync();
             }
 
             return Ok("Complaint submitted successfully.");
