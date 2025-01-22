@@ -27,7 +27,7 @@ namespace WebApplication8.Repository
             // Implementation using Dapper
             using (var connection = _dapper_context.CreateConnection()) 
             { 
-                string insertComplaintSql = @" INSERT INTO Complaints (Name, Detail) OUTPUT INSERTED.Id VALUES (@Name, @Detail);"; 
+                string insertComplaintSql = @" INSERT INTO Complaints (PropertyID, SegmentID, ComplainName, Description) OUTPUT INSERTED.Id VALUES (@PropertyID, @SegmentID, @ComplainName, @Description);"; 
                 complaint.Id = await connection.ExecuteScalarAsync<int>(insertComplaintSql, complaint); 
             }
             return complaint; 

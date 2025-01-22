@@ -2,8 +2,10 @@
 {
     public class ComplaintDto
     {
-        public string? Name { get; set; }
-        public string? Detail { get; set; }
+        public string? PropertyID { get; set; }
+        public string? SegmentID { get; set; }
+        public string? ComplainName { get; set; }
+        public string? Description{ get; set; }
         public List<IFormFile>? File { get; set; }
     }
 }

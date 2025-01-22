@@ -11,24 +11,23 @@ namespace WebApplication8.Controllers
     public class ComplaintsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly Interfaces.IComplaintRepository _complaintRepository;
+        private readonly IComplaintRepository _complaintRepository;
 
-        public ComplaintsController(ApplicationDbContext context, Interfaces.IComplaintRepository complaintRepository)
+        public ComplaintsController(ApplicationDbContext context, IComplaintRepository complaintRepository)
         {
             _context = context;
             _complaintRepository = complaintRepository;
         }
 
-        [HttpGet]
-        [Route("complaints")]
+        
+        [HttpGet, Route("GetComplains")]
         public async Task<ActionResult<List<ComplaintWithImagesDto>>> GetAllComplaintsWithImages()
         {
-            var complaintDtos = await _complaintRepository.GetAllComplaintsWithImagesAsync(); 
+            var complaintDtos = await _complaintRepository.GetAllComplaintsWithImagesAsync();
             return Ok(complaintDtos);
         }
 
-        [HttpPost]
-        [Route("addComplaint")]
+        [HttpPost, Route("AddComplain")]  
         public async Task<IActionResult> SubmitComplaintWithImages([FromForm] ComplaintDto complaintDto)
         {
             if (complaintDto == null)
@@ -39,8 +38,10 @@ namespace WebApplication8.Controllers
             // Create the complaint entity
             var complaint = new Complaint
             {
-                Name = complaintDto.Name,
-                Detail = complaintDto.Detail,
+                PropertyID = complaintDto.PropertyID,
+                SegmentID = complaintDto.SegmentID,
+                ComplainName = complaintDto.ComplainName ?? "",
+                Description = complaintDto.Description ?? "",
                 Images = new List<ComplaintImage>()
             };
             // Save the complaint entity to the database
@@ -61,7 +62,7 @@ namespace WebApplication8.Controllers
                     {
                         // Get the file extension
                         var fileExtension = Path.GetExtension(formFile.FileName);
-                        
+
                         // Generate a unique file name with the extension
                         var uniqueFileName = $"{Guid.NewGuid()}{fileExtension}";
 
@@ -73,14 +74,16 @@ namespace WebApplication8.Controllers
                         }
 
                         // Convert file size to KB and MB
-                        double fileSizeInKB = formFile.Length / 1024.0; 
-                        double fileSizeInMB = fileSizeInKB / 1024.0; 
-                        string fileSizeWithUnit; 
-                        if (fileSizeInMB >= 1) 
-                        { 
-                            fileSizeWithUnit = fileSizeInMB.ToString("F2") + " MB"; 
-                        } else { 
-                            fileSizeWithUnit = fileSizeInKB.ToString("F2") + " KB"; 
+                        double fileSizeInKB = formFile.Length / 1024.0;
+                        double fileSizeInMB = fileSizeInKB / 1024.0;
+                        string fileSizeWithUnit;
+                        if (fileSizeInMB >= 1)
+                        {
+                            fileSizeWithUnit = fileSizeInMB.ToString("F2") + " MB";
+                        }
+                        else
+                        {
+                            fileSizeWithUnit = fileSizeInKB.ToString("F2") + " KB";
                         }
                         // Create the complaint image entity
                         var complaintImage = new ComplaintImage
