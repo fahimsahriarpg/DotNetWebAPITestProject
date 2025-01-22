@@ -27,8 +27,8 @@ namespace WebApplication8.Controllers
             return Ok(complaintDtos);
         }
 
-        [HttpPost, Route("AddComplain")]  
-        public async Task<IActionResult> SubmitComplaintWithImages([FromForm] ComplaintDto complaintDto)
+        [HttpPost, Route("SaveComplain")]  
+        public async Task<IActionResult> SaveComplainAsync([FromForm] ComplaintDto complaintDto)
         {
             if (complaintDto == null)
             {
